@@ -35,7 +35,7 @@
               </ul>
             </div>
             <div class="navbar-btn mt-15 d-none d-lg-inline-block">
-              <a class="menu-bar" href="#side-menu-right"><i class="lni-menu"></i></a>
+              <a class="menu-bar" (click)="switchSidebar()"><i class="lni-menu"></i></a>
             </div>
           </nav>
         </div>
@@ -56,10 +56,10 @@
               <div class="container">
                 <div class="row justify-content-center">
                   <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Refreshing Design & Easy to Customize</h2>
+                    <h2 class="carousel-title">Accrochez Le Travail De Vos RÊVES !</h2>
                     <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
-                      <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
+                      <li><a class="main-btn rounded-three" href="#">COMMENCER</a></li>
+                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
                     </ul>
                   </div>
                 </div>
@@ -71,10 +71,10 @@
               <div class="container">
                 <div class="row justify-content-center">
                   <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Based on Latest Bootstrap & HTML5</h2>
+                    <h2 class="carousel-title">Apprendre Le Travail En équipe </h2>
                     <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
-                      <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
+                      <li><a class="main-btn rounded-three" href="#">COMMENCER</a></li>
+                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
                     </ul>
                   </div>
                 </div>
@@ -86,10 +86,10 @@
               <div class="container">
                 <div class="row justify-content-center">
                   <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Multi-purpose Landing Page Template</h2>
+                    <h2 class="carousel-title">Recruter Les Meilleurs TALENTS !</h2>
                     <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#">GET STARTED</a></li>
-                      <li><a class="main-btn rounded-one" href="#">DOWNLOAD</a></li>
+                      <li><a class="main-btn rounded-three" href="#contact">CONTACTEZ-NOUS</a></li>
+                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
                     </ul>
                   </div>
                 </div>
@@ -108,29 +108,40 @@
   </div>
 </section>
 
-<div class="sidebar-right">
-  <div class="sidebar-close">
-    <a class="close" href="#close"><i class="lni-close"></i></a>
+<div class="sidebar-right "   [ngClass]="{'open':sidebar} ">
+  <div class="sidebar-close ">
+    <a class="close" (click)="switchSidebar()" ><i class="lni-close"></i></a>
   </div>
   <div class="sidebar-content">
-    <div class="sidebar-logo text-center">
-      <a href="#"><img src="assets/images/ImproveMe.png" alt="ImproveMe.png"></a>
+    <div class="sidebar-logo text-center " *ngIf="!authenticated" >
+      <a routerLink="/"><img src="assets/images/ImproveMe.png" alt="ImproveMe.png"></a>
+
+    </div>
+    <div class="sidebar-logo text-center align-items-center justify-content-center" *ngIf="authenticated" >
+      <a ><img src="assets/images/author-1.jpg" alt="ImproveMe.png"></a>
+     <br> <br> <span class="NameUser">{{ name }}</span>
     </div>
     <div class="sidebar-menu">
-      <ul>
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">SERVICES</a></li>
-        <li><a href="#">RESOURCES</a></li>
-        <li><a href="#">CONTACT</a></li>
+      <ul *ngIf="!authenticated">
+        <li><a href="#" (click)="login()">Se connecter</a></li>
+        <li><a href="#" (click)="register()">Inscription</a></li>
+      </ul>
+      <ul *ngIf="authenticated">
+        <li><a href="http://localhost:4202">Espace personnelle </a></li>
+        <li><a href="#" (click)="logout()">Parameter</a></li>
+        <li><a href="#" (click)="logout()">Se déconnecter </a></li>
       </ul>
     </div>
-    <div class="sidebar-social d-flex align-items-center justify-content-center">
-      <span>FOLLOW US</span>
+
+    <div  class="sidebar-social d-flex align-items-center justify-content-center">
+      <span>Abonnez vous</span>
       <ul>
         <li><a href="#"><i class="lni-twitter-original"></i></a></li>
         <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
       </ul>
+
     </div>
+
   </div>
 </div>
 <div class="overlay-right"></div>
