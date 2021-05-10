@@ -13,6 +13,6 @@ export class ContactService {
 
   createContact(contact: Contact): Observable<Contact>
   {
-      return this.http.post<Contact>(`${environment.hostUri}/contacts/`, contact);
+      return this.http.post<Contact>(`${environment.hostUri}:8081/contacts/`, contact);
   }
 }

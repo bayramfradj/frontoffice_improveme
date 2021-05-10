@@ -16,19 +16,19 @@ export class AuthGuard extends KeycloakAuthGuard {
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     return new Promise(async (resolve, reject) => {
-        if (!this.authenticated )
-        {
-          this.keycloackAngular.login();
-          resolve(false);
-          return;
-        }
-        const requiredRoles = route.data.roles;
-        let granted = false;
-
-        if (!requiredRoles || requiredRoles.length === 0)
+      const requiredRoles = route.data.roles;
+      let granted = false;
+      if (!requiredRoles || requiredRoles.length === 0)
         {
           granted = true;
-        }else {
+        }
+      else {
+          if (!this.authenticated )
+          {
+            this.keycloackAngular.login();
+            resolve(false);
+            return;
+          }
           for (const requiredRole of requiredRoles)
           {
             console.log(this.roles);
@@ -40,13 +40,13 @@ export class AuthGuard extends KeycloakAuthGuard {
           }
         }
 
-        if (granted === false)
+      if (granted === false)
         {
           console.log('mara jaya');
           //this.router.navigate(['/']);
         }
 
-        resolve(granted);
+      resolve(granted);
     });
   }
 

@@ -9,7 +9,7 @@ export const environment = {
     realm: 'improveMe',
     url: 'http://localhost:8080/auth'
   },
-  hostUri: 'http://localhost:8081'
+  hostUri: 'http://localhost'
 };
 
 /*

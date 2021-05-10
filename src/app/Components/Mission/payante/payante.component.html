@@ -1,0 +1,40 @@
+<section class="blog-area ">
+  <div class="container" *ngIf="!loaded">
+    <div class="row justify-content-center">
+      <div class="col-lg-3">
+        <img src="assets/images/loading.gif" width="100%">
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="loaded">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section-title text-center pb-20">
+          <h3 class="title">Participez à l’accomplissement des missions pour les entreprises</h3>
+          <p class="text">Rejoignez l’équipe et participez à l’accomplissement des missions
+            proposées par les entreprises, confrontez le milieu professionnel et enrichissez
+            votre carrière professionnelle
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center" >
+      <div class="col-lg-4 col-md-7 col-sm-9" *ngFor="let mission of missions">
+        <div class="single-blog mt-50 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s" >
+          <div class="blog-image">
+            <img src="assets/images/missions.jpg" *ngIf="mission.img == null" alt="{{mission.title}}">
+            <img src="{{mission.img}}" *ngIf="mission.img != null" alt="{{mission.title}}">
+          </div>
+          <div class="blog-content">
+            <h4 class="blog-title"><a [routerLink]="['/Show',mission.id]">{{mission.title}}</a></h4>
+            <span><i class="lni-calendar"></i>{{mission.startDate | date: 'dd/MM/yyyy'}} - {{mission.endDate | date: 'dd/MM/yyyy'}}</span>
+
+            <p class="text">{{mission.description}}</p>
+            <a class="more" [routerLink]="['/Show',mission.id]" >Lire suite</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

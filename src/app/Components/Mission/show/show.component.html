@@ -1,0 +1,44 @@
+<section class="blog-area " *ngIf="!loaded">
+  <div class="container" >
+    <div class="row justify-content-center">
+      <div class="col-lg-3">
+        <img src="assets/images/loading.gif" width="100%">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="about-area-3 about-area-bg-3 mt-40" *ngIf="loaded">
+    <div class="container" >
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-last">
+        <div class="image " *ngIf="mission.img != null" >
+          <img  src="{{mission.img}}" style="max-height: 450px; width: available" alt="{{mission.title}}">
+        </div>
+        <div class="image " *ngIf="mission.img == null" [ngSwitch]="mission.typeMission">
+          <img *ngSwitchCase="TypeMission.RECRUTEMENT" src="assets/images/rec.jpg" style="max-height: 450px; width: available" alt="about">
+          <img *ngSwitchCase="TypeMission.PAYANTE" src="assets/images/demandés.jpg" alt="about">
+          <img *ngSwitchCase="TypeMission.FORMATION" class="mt-30" src="assets/images/missions.jpg" alt="about">
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-first">
+        <div class="about-content">
+
+          <h5 class="sub-title mt-20">{{mission.entrepriseName}}</h5>
+          <h3 class="about-title mt-15">{{mission.title}}</h3>
+          <p class="text-muted mt-15"><i class="lni-calendar"></i> {{  mission.startDate   | date: 'dd/MM/yyyy'}}   |   {{  mission.endDate | date: 'dd/MM/yyyy'}}</p>
+          <p class="text mt-20">{{mission.description}}</p>
+          <hr>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-12" [innerHTML]="mission.content">
+      </div>
+      <div class="rounded-buttons mt-30 mb-20  " *ngIf="authorized">
+        <button class="main-btn rounded-0 rounded-three ml-10"  (click)="envoyer()" >PARTICIPER</button>
+      </div>
+    </div>
+  </div>
+</section>

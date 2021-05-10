@@ -1,6 +1,5 @@
 import {KeycloakService} from 'keycloak-angular';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
 
 @Injectable(
   {providedIn: 'root'}
@@ -11,7 +10,6 @@ export class AuthService {
   getLoggedUser(): any {
     try {
       const userDetails = this.keycloakservice.getKeycloakInstance().idTokenParsed;
-      console.log('userDetails', userDetails);
       return userDetails;
     } catch (e) {
       console.log('getLoggedUser Exception', e);

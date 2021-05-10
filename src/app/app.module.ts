@@ -18,6 +18,10 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { FormationComponent } from './Components/Mission/formation/formation.component';
+import { RecrutementComponent } from './Components/Mission/recrutement/recrutement.component';
+import { PayanteComponent } from './Components/Mission/payante/payante.component';
+import { ShowComponent } from './Components/Mission/show/show.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import {ToastrModule} from 'ngx-toastr';
     ServiceComponent,
     BlogComponent,
     MissionComponent,
-    ContactComponent
+    ContactComponent,
+    FormationComponent,
+    RecrutementComponent,
+    PayanteComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

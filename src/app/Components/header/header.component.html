@@ -1,10 +1,10 @@
-<section class="header-area">
-  <div class="navbar-area navbar-transparent">
+<section class="header-area" id="header">
+  <div class="navbar-area navbar-transparent" [ngClass]="{'sticky':url!=='http://localhost:4200/'}" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" routerLink="">
               <img src="assets/images/ImproveMe.png" alt="ImproveMe">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,23 +14,23 @@
             </button>
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="page-scroll" href="#home">ACCUEIL</a>
+                <li class="nav-item " [ngClass]="{'active':fragment==='home' || !fragment && ac.isActive}" >
+                  <a class="page-scroll"  routerLink="" fragment="home" routerLinkActive #ac="routerLinkActive" [routerLinkActiveOptions]="{exact: true}" >ACCUEIL</a>
                 </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#about">À PROPOS</a>
+                <li class="nav-item" [ngClass]="{'active':fragment==='about'}">
+                  <a class="page-scroll" routerLink="" fragment="about">À PROPOS</a>
                 </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#services">NOS SERVICES</a>
+                <li class="nav-item" [ngClass]="{'active':fragment==='services'}">
+                  <a class="page-scroll" routerLink="" fragment="services" >NOS SERVICES</a>
                 </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#pricing">MISSIONS</a>
+                <li class="nav-item" [ngClass]="{'active':fragment==='pricing'}">
+                  <a class="page-scroll"  routerLink="" fragment="pricing" >MISSIONS</a>
                 </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#blog">BLOG</a>
+                <li class="nav-item" [ngClass]="{'active':fragment==='blog'}">
+                  <a class="page-scroll" routerLink="" fragment="blog" >BLOG</a>
                 </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#contact">CONTACTEZ-NOUS</a>
+                <li class="nav-item" [ngClass]="{'active':fragment==='contact'}">
+                  <a class="page-scroll" routerLink="" fragment="contact">CONTACTEZ-NOUS</a>
                 </li>
               </ul>
             </div>
@@ -42,70 +42,7 @@
       </div>
     </div>
   </div>
-  <div id="home" class="slider-area slider-3">
-    <div class="bd-example">
-      <div id="carouselOne" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselOne" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselOne" data-slide-to="1"></li>
-          <li data-target="#carouselOne" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item bg_cover active" style="background-image: url(assets/images/slider-1.jpg)">
-            <div class="carousel-caption">
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Accrochez Le Travail De Vos RÊVES !</h2>
-                    <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#">COMMENCER</a></li>
-                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg_cover" style="background-image: url(assets/images/slider-2.jpg)">
-            <div class="carousel-caption">
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Apprendre Le Travail En équipe </h2>
-                    <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#">COMMENCER</a></li>
-                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg_cover" style="background-image: url(assets/images/slider-3.jpg)">
-            <div class="carousel-caption">
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-xl-6 col-lg-7 col-sm-10">
-                    <h2 class="carousel-title">Recruter Les Meilleurs TALENTS !</h2>
-                    <ul class="carousel-btn rounded-buttons">
-                      <li><a class="main-btn rounded-three" href="#contact">CONTACTEZ-NOUS</a></li>
-                      <li><a class="main-btn rounded-one" href="#about">DÉCOUVRIR</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselOne" role="button" data-slide="prev">
-          <i class="lni-arrow-left-circle"></i>
-        </a>
-        <a class="carousel-control-next" href="#carouselOne" role="button" data-slide="next">
-          <i class="lni-arrow-right-circle"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+
 </section>
 
 <div class="sidebar-right "   [ngClass]="{'open':sidebar} ">
@@ -127,14 +64,14 @@
         <li><a href="#" (click)="register()">Inscription</a></li>
       </ul>
       <ul *ngIf="authenticated">
-        <li><a href="http://localhost:4202">Espace personnelle </a></li>
-        <li><a href="#" (click)="logout()">Parameter</a></li>
+        <li><a href="http://localhost:4202">Espace personnel</a></li>
+        <li><a href="#" (click)="logout()">Paramètres</a></li>
         <li><a href="#" (click)="logout()">Se déconnecter </a></li>
       </ul>
     </div>
 
     <div  class="sidebar-social d-flex align-items-center justify-content-center">
-      <span>Abonnez vous</span>
+      <span>Abonnez-vous</span>
       <ul>
         <li><a href="#"><i class="lni-twitter-original"></i></a></li>
         <li><a href="#"><i class="lni-facebook-filled"></i></a></li>

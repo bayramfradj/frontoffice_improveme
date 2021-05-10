@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../Services/auth.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,12 @@ import {AuthService} from '../../Services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   sidebar: boolean;
-  user = null;
   name?: string;
   authenticated: boolean;
-  constructor(private auth: AuthService) { }
+  carousel: boolean;
+  fragment: string;
+  url: string;
+  constructor(private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sidebar = false;
@@ -23,6 +26,13 @@ export class HeaderComponent implements OnInit {
         this.name += ' ' + data.lastName;
       });
     }
+
+    this.url = window.location.href;
+
+
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+    });
   }
 
   switchSidebar(): void
