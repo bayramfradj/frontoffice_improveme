@@ -5,6 +5,7 @@ import {Mission} from './mission';
 export class Demande {
   id: bigint;
   userId: string | undefined;
+  userName: string;
   date: string;
   typeDemende: TypeDemende;
   stateCandidature: StateCandidature;

@@ -83,37 +83,36 @@ export class ShowComponent implements OnInit {
       this.auth.login();
       return;
     }
-    this.demande.userId =  this.userId;
-    this.demande.mission = this.mission;
-    this.demande.date = new Date().toJSON();
-    switch (this.mission.typeMission) {
-      case TypeMission.FORMATION: {
-        console.log('im in formation');
-        this.demande.typeDemende = TypeDemende.INSCRIPTION;
-        this.demande.isPayed = false;
-        break;
+    this.auth.getUserProfile().then(value => {
+      this.demande.userName = `${value.firstName} ${value.lastName}`;
+      this.demande.userId =  this.userId;
+      this.demande.mission = this.mission;
+      this.demande.date = new Date().toJSON();
+      switch (this.mission.typeMission) {
+        case TypeMission.FORMATION: {
+          console.log('im in formation');
+          this.demande.typeDemende = TypeDemende.INSCRIPTION;
+          this.demande.isPayed = false;
+          break;
+        }
+        default: {
+          console.log('im in other type');
+          this.demande.typeDemende = TypeDemende.CANDIDATURE;
+          this.demande.stateCandidature = StateCandidature.PENDING;
+          break;
+        }
       }
-      default: {
-        console.log('im in other type');
-        this.demande.typeDemende = TypeDemende.CANDIDATURE;
-        this.demande.stateCandidature = StateCandidature.PENDING;
-        break;
-      }
-    }
-
-    console.log(this.demande);
-
-    this.loaded = false;
-    this.dmService.create(this.demande).subscribe(value => {
-      console.log(value);
-      this.loadMission();
-      const msg = this.mission.typeMission === TypeMission.FORMATION ? 'Inscription' : 'Candidature';
-      this.toastr.success( `${msg} envoyée avec succès` , 'SUCCÈS' );
-    }, error => {
-      this.toastr.error('Réessayer Ultérieurement', 'ERREUR');
-      console.log('errreur: ', error.message);
+      this.loaded = false;
+      this.dmService.create(this.demande).subscribe(value => {
+        console.log(value);
+        this.loadMission();
+        const msg = this.mission.typeMission === TypeMission.FORMATION ? 'Inscription' : 'Candidature';
+        this.toastr.success( `${msg} envoyée avec succès` , 'SUCCÈS' );
+      }, error => {
+        this.toastr.error('Réessayer Ultérieurement', 'ERREUR');
+        console.log('errreur: ', error.message);
+      });
     });
-
 
   }
 }
